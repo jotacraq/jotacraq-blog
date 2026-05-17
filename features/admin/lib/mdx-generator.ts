@@ -6,19 +6,19 @@ const PUBLISHED_AT_REGEX = /^\d{4}-\d{2}-\d{2}$/;
 export function validateArticleDraft(draft: ArticleDraft): ArticleDraftValidationResult {
   const errors: ArticleDraftValidationResult["errors"] = {};
 
-  if (!draft.title.trim()) errors.title = "Title is required.";
-  if (!draft.subtitle.trim()) errors.subtitle = "Subtitle is required.";
-  if (!draft.slug.trim()) errors.slug = "Slug is required.";
-  if (!draft.publishedAt.trim()) errors.publishedAt = "Published date is required.";
-  if (!draft.excerpt.trim()) errors.excerpt = "Excerpt is required.";
-  if (!draft.content.trim()) errors.content = "Content is required.";
+  if (!draft.title.trim()) errors.title = "Titulo e obrigatorio.";
+  if (!draft.subtitle.trim()) errors.subtitle = "Subtitulo e obrigatorio.";
+  if (!draft.slug.trim()) errors.slug = "Slug e obrigatorio.";
+  if (!draft.publishedAt.trim()) errors.publishedAt = "Data de publicacao e obrigatoria.";
+  if (!draft.excerpt.trim()) errors.excerpt = "Resumo e obrigatorio.";
+  if (!draft.content.trim()) errors.content = "Conteudo e obrigatorio.";
 
   if (draft.slug.trim() && !SLUG_REGEX.test(draft.slug.trim())) {
-    errors.slug = "Slug must contain lowercase letters, numbers, and hyphens.";
+    errors.slug = "Use apenas letras minusculas, numeros e hifens.";
   }
 
   if (draft.publishedAt.trim() && !PUBLISHED_AT_REGEX.test(draft.publishedAt.trim())) {
-    errors.publishedAt = "Published date must use YYYY-MM-DD format.";
+    errors.publishedAt = "Use o formato YYYY-MM-DD.";
   }
 
   return {

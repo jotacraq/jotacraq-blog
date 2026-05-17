@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { AdminNavbar } from "@/features/admin/components/admin-navbar";
 import { getAllArticles, getLatestArticle } from "@/features/articles/lib/articles";
+import { formatDisplayDate } from "@/features/articles/lib/format-date";
 
 export default async function AdminHomePage() {
   const [articles, latestArticle] = await Promise.all([getAllArticles(), getLatestArticle()]);
@@ -40,7 +41,9 @@ export default async function AdminHomePage() {
           <article style={{ border: "1px solid var(--border)", padding: "16px" }}>
             <p style={{ color: "var(--muted)", margin: 0 }}>Ultimo publicado</p>
             <p style={{ fontSize: "24px", fontWeight: 700, margin: "8px 0 0" }}>
-              {latestArticle?.publishedAt ?? "Sem artigos publicados"}
+              {latestArticle
+                ? formatDisplayDate(latestArticle.publishedAt)
+                : "Sem artigos publicados"}
             </p>
           </article>
         </section>
@@ -51,8 +54,8 @@ export default async function AdminHomePage() {
         >
           <h2 style={{ fontSize: "20px", margin: 0 }}>Metricas do MVP</h2>
           <p style={{ color: "var(--muted)", lineHeight: 1.7, margin: "10px 0 0" }}>
-            Para visualizacoes, visitantes e paginas mais acessadas em producao, configure o
-            Vercel Analytics no projeto.
+            Para visualizacoes, visitantes e paginas mais acessadas em producao, configure o Vercel
+            Analytics no projeto.
           </p>
         </section>
 
@@ -76,7 +79,9 @@ export default async function AdminHomePage() {
                 >
                   <div>
                     <strong>{article.title}</strong>
-                    <p style={{ color: "var(--muted)", margin: "4px 0 0" }}>{article.publishedAt}</p>
+                    <p style={{ color: "var(--muted)", margin: "4px 0 0" }}>
+                      {formatDisplayDate(article.publishedAt)}
+                    </p>
                   </div>
                   {article.draft ? (
                     <span
