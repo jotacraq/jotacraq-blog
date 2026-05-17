@@ -3,9 +3,7 @@ import type { ArticleDraft, ArticleDraftValidationResult } from "../types";
 const SLUG_REGEX = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const PUBLISHED_AT_REGEX = /^\d{4}-\d{2}-\d{2}$/;
 
-export function validateArticleDraft(
-  draft: ArticleDraft,
-): ArticleDraftValidationResult {
+export function validateArticleDraft(draft: ArticleDraft): ArticleDraftValidationResult {
   const errors: ArticleDraftValidationResult["errors"] = {};
 
   if (!draft.title.trim()) errors.title = "Title is required.";
@@ -44,9 +42,7 @@ export function generateArticleMdx(draft: ArticleDraft): string {
 
   const normalizedTags = parseTags(draft.tags);
   const tagsBlock =
-    normalizedTags.length > 0
-      ? normalizedTags.map((tag) => `  - ${tag}`).join("\n")
-      : "  -";
+    normalizedTags.length > 0 ? normalizedTags.map((tag) => `  - ${tag}`).join("\n") : "  -";
 
   return `---
 title: "${draft.title}"

@@ -21,7 +21,11 @@ function getRequiredString(
 function getInterests(source: Record<string, unknown>): string[] {
   const value = source.interests;
 
-  if (!Array.isArray(value) || value.length === 0 || value.some((item) => typeof item !== "string")) {
+  if (
+    !Array.isArray(value) ||
+    value.length === 0 ||
+    value.some((item) => typeof item !== "string")
+  ) {
     throw new Error(
       `Invalid author frontmatter in "${AUTHOR_FILE_NAME}": "interests" must be a non-empty string array.`
     );

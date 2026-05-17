@@ -49,7 +49,9 @@ function parseArticleFile(fileName: string, rawContent: string): Article {
 
   const draftValue = data.draft;
   if (draftValue !== undefined && typeof draftValue !== "boolean") {
-    throw new Error(`Invalid frontmatter in "${fileName}": "draft" must be a boolean when provided.`);
+    throw new Error(
+      `Invalid frontmatter in "${fileName}": "draft" must be a boolean when provided.`
+    );
   }
 
   return {

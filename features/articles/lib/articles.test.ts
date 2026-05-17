@@ -19,7 +19,10 @@ describe("articles library", () => {
   it("getAllArticles returns all .mdx files including drafts sorted by date desc", async () => {
     const articles = await getAllArticles();
 
-    expect(articles.map((article) => article.slug)).toEqual(["rascunho-exemplo", "primeiro-artigo"]);
+    expect(articles.map((article) => article.slug)).toEqual([
+      "rascunho-exemplo",
+      "primeiro-artigo",
+    ]);
     expect(articles[0]?.draft).toBe(true);
     expect(articles[0]?.readingTimeMinutes).toBeGreaterThan(0);
   });

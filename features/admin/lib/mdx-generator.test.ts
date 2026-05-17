@@ -58,11 +58,7 @@ describe("validateArticleDraft", () => {
 
 describe("parseTags", () => {
   it("turns comma-separated tags into a trimmed array", () => {
-    expect(parseTags(" nextjs,  mdx ,admin ,, ")).toEqual([
-      "nextjs",
-      "mdx",
-      "admin",
-    ]);
+    expect(parseTags(" nextjs,  mdx ,admin ,, ")).toEqual(["nextjs", "mdx", "admin"]);
   });
 
   it("returns an empty array for empty input", () => {
@@ -90,7 +86,7 @@ describe("generateArticleMdx", () => {
       generateArticleMdx({
         ...validDraft,
         title: "",
-      }),
+      })
     ).toThrow();
   });
 });
