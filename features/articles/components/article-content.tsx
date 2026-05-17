@@ -1,112 +1,48 @@
+import { MDXRemote } from "next-mdx-remote/rsc";
 import { formatDisplayDate } from "@/features/articles/lib/format-date";
 import type { Article } from "@/features/articles/types";
-import type { ReactNode } from "react";
 
 type ArticleContentProps = {
   article: Article;
 };
 
-function renderLine(line: string, key: string) {
-  const trimmed = line.trim();
-
-  if (trimmed.length === 0) {
-    return <br key={key} />;
-  }
-
-  if (trimmed.startsWith("### ")) {
-    return (
-      <h3 key={key} style={{ fontSize: "24px", margin: "32px 0 12px" }}>
-        {trimmed.slice(4)}
-      </h3>
-    );
-  }
-
-  if (trimmed.startsWith("## ")) {
-    return (
-      <h2 key={key} style={{ fontSize: "30px", margin: "36px 0 14px" }}>
-        {trimmed.slice(3)}
-      </h2>
-    );
-  }
-
-  if (trimmed.startsWith("# ")) {
-    return (
-      <h1 key={key} style={{ fontSize: "36px", margin: "40px 0 16px" }}>
-        {trimmed.slice(2)}
-      </h1>
-    );
-  }
-
-  if (trimmed.startsWith("- ")) {
-    return (
-      <li key={key} style={{ marginBottom: "8px" }}>
-        {trimmed.slice(2)}
-      </li>
-    );
-  }
-
-  if (trimmed.startsWith("```")) {
-    return (
-      <pre
-        key={key}
-        style={{
-          background: "var(--surface)",
-          border: "1px solid var(--border)",
-          borderRadius: "8px",
-          margin: "20px 0",
-          overflowX: "auto",
-          padding: "14px",
-        }}
-      >
-        <code>{trimmed.slice(3)}</code>
-      </pre>
-    );
-  }
-
-  return (
-    <p key={key} style={{ lineHeight: 1.9, margin: "0 0 14px" }}>
-      {line}
-    </p>
-  );
-}
+const mdxComponents = {
+  h1: (props: React.ComponentProps<"h1">) => (
+    <h1 {...props} style={{ fontSize: "36px", margin: "40px 0 16px" }} />
+  ),
+  h2: (props: React.ComponentProps<"h2">) => (
+    <h2 {...props} style={{ fontSize: "30px", margin: "36px 0 14px" }} />
+  ),
+  h3: (props: React.ComponentProps<"h3">) => (
+    <h3 {...props} style={{ fontSize: "24px", margin: "32px 0 12px" }} />
+  ),
+  p: (props: React.ComponentProps<"p">) => (
+    <p {...props} style={{ lineHeight: 1.9, margin: "0 0 14px" }} />
+  ),
+  ul: (props: React.ComponentProps<"ul">) => (
+    <ul {...props} style={{ margin: "0 0 18px", paddingLeft: "20px" }} />
+  ),
+  li: (props: React.ComponentProps<"li">) => <li {...props} style={{ marginBottom: "8px" }} />,
+  pre: (props: React.ComponentProps<"pre">) => (
+    <pre
+      {...props}
+      style={{
+        background: "var(--surface)",
+        border: "1px solid var(--border)",
+        borderRadius: "8px",
+        margin: "20px 0",
+        overflowX: "auto",
+        padding: "14px",
+      }}
+    />
+  ),
+  code: (props: React.ComponentProps<"code">) => <code {...props} />,
+  a: (props: React.ComponentProps<"a">) => (
+    <a {...props} style={{ color: "var(--accent)", textUnderlineOffset: "3px" }} />
+  ),
+};
 
 export function ArticleContent({ article }: ArticleContentProps) {
-  const lines = article.content.split("\n");
-  const contentBlocks: ReactNode[] = [];
-  let listItems: ReactNode[] = [];
-
-  lines.forEach((line, index) => {
-    const key = `${article.slug}-${index}`;
-    const trimmed = line.trim();
-
-    if (trimmed.startsWith("- ")) {
-      listItems.push(renderLine(line, key));
-      return;
-    }
-
-    if (listItems.length > 0) {
-      contentBlocks.push(
-        <ul
-          key={`${article.slug}-list-${index}`}
-          style={{ margin: "0 0 18px", paddingLeft: "20px" }}
-        >
-          {listItems}
-        </ul>
-      );
-      listItems = [];
-    }
-
-    contentBlocks.push(renderLine(line, key));
-  });
-
-  if (listItems.length > 0) {
-    contentBlocks.push(
-      <ul key={`${article.slug}-list-end`} style={{ margin: "0 0 18px", paddingLeft: "20px" }}>
-        {listItems}
-      </ul>
-    );
-  }
-
   return (
     <article style={{ marginTop: "20px" }}>
       <header style={{ marginBottom: "24px" }}>
@@ -118,7 +54,9 @@ export function ArticleContent({ article }: ArticleContentProps) {
           {formatDisplayDate(article.publishedAt)} - {article.readingTimeMinutes} min de leitura
         </div>
       </header>
-      <section style={{ fontSize: "18px" }}>{contentBlocks}</section>
+      <section style={{ fontSize: "18px" }}>
+        <MDXRemote components={mdxComponents} source={article.content} />
+      </section>
     </article>
   );
 }
