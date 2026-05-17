@@ -14,13 +14,13 @@
 
 Before executing tasks, read these files:
 
-- `docs/prd-jotacraq-blog.md`
-- `docs/specs/00-project-overview.md`
-- `docs/specs/01-content-mdx.md`
-- `docs/specs/02-public-experience.md`
-- `docs/specs/03-admin-experience.md`
-- `docs/specs/04-architecture-and-quality.md`
-- `docs/specs/05-roadmap-and-backlog.md`
+- `docs/specs/jotacraq-blog/prd.md`
+- `docs/specs/jotacraq-blog/specs/00-project-overview.md`
+- `docs/specs/jotacraq-blog/specs/01-content-mdx.md`
+- `docs/specs/jotacraq-blog/specs/02-public-experience.md`
+- `docs/specs/jotacraq-blog/specs/03-admin-experience.md`
+- `docs/specs/jotacraq-blog/specs/04-architecture-and-quality.md`
+- `docs/specs/jotacraq-blog/specs/05-roadmap-and-backlog.md`
 
 ## Execution Rules
 
@@ -234,7 +234,7 @@ Use these as short prompts when dispatching agents. Include only the relevant ta
 
 Read:
 
-- `docs/specs/01-content-mdx.md`
+- `docs/specs/jotacraq-blog/specs/01-content-mdx.md`
 - Task 5 from this plan
 
 Goal:
@@ -264,7 +264,7 @@ Return:
 
 Read:
 
-- `docs/specs/01-content-mdx.md`
+- `docs/specs/jotacraq-blog/specs/01-content-mdx.md`
 - Task 6 from this plan
 
 Goal:
@@ -287,7 +287,7 @@ Return:
 
 Read:
 
-- `docs/specs/03-admin-experience.md`
+- `docs/specs/jotacraq-blog/specs/03-admin-experience.md`
 - Task 13 from this plan
 
 Goal:
@@ -310,7 +310,7 @@ Return:
 
 Read:
 
-- `docs/specs/02-public-experience.md`
+- `docs/specs/jotacraq-blog/specs/02-public-experience.md`
 - assigned task body from Tasks 10, 11, or 12
 
 Goal:
@@ -333,7 +333,7 @@ Return:
 
 Read:
 
-- `docs/specs/03-admin-experience.md`
+- `docs/specs/jotacraq-blog/specs/03-admin-experience.md`
 - assigned section from Wave 4
 
 Goal:
