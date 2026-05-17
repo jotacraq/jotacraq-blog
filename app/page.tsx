@@ -1,66 +1,23 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import { ArticleTimeline } from "@/features/articles/components/article-timeline";
+import { PublicNavbar } from "@/features/articles/components/public-navbar";
+import { getLatestArticle, getPublishedArticles } from "@/features/articles/lib/articles";
 
-export default function Home() {
+export default async function Home() {
+  const [articles, latestArticle] = await Promise.all([getPublishedArticles(), getLatestArticle()]);
+
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.tsx file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <>
+      <PublicNavbar latestArticleDate={latestArticle?.publishedAt ?? null} />
+      <main style={{ margin: "0 auto", maxWidth: "760px", padding: "48px 16px 72px" }}>
+        <header style={{ marginBottom: "28px" }}>
+          <h1 style={{ fontSize: "42px", margin: 0 }}>Artigos</h1>
+          <p style={{ color: "var(--muted)", lineHeight: 1.7, margin: "12px 0 0" }}>
+            Uma timeline publica com textos autorais, organizados do mais recente para o mais
+            antigo.
           </p>
-        </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+        </header>
+        <ArticleTimeline articles={articles} />
       </main>
-    </div>
+    </>
   );
 }
