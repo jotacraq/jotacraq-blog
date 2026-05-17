@@ -145,4 +145,3 @@ interests:
 - A homepage consegue obter o artigo mais recente.
 - A pagina "Sobre mim" consegue ler dados do autor.
 - Frontmatter invalido deve falhar de forma clara durante desenvolvimento ou build.
-

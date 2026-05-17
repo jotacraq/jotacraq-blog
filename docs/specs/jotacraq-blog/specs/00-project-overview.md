@@ -73,4 +73,3 @@ Nao sera implementado no MVP:
 - A area admin existe, mas nao precisa persistir dados online no MVP.
 - O fluxo de publicacao por commit esta documentado.
 - A estrutura do projeto favorece PRs pequenos e modulos bem definidos.
-

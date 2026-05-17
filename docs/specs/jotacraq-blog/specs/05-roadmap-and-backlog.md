@@ -186,4 +186,3 @@ Adiar tarefas que:
 - adicionam autenticacao complexa;
 - dependem de servicos pagos;
 - aumentam escopo sem melhorar o primeiro uso do blog.
-

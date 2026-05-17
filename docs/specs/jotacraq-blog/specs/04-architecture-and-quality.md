@@ -187,4 +187,3 @@ PRs sugeridos:
 - Nenhum arquivo principal ultrapassa 500 linhas.
 - Funcoes de dominio possuem testes.
 - Segredos e tokens nao aparecem no repositorio.
-
