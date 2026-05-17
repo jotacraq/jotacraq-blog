@@ -9,9 +9,7 @@ type ArticleTimelineProps = {
 export function ArticleTimeline({ articles }: ArticleTimelineProps) {
   if (articles.length === 0) {
     return (
-      <p style={{ color: "var(--muted)", lineHeight: 1.7 }}>
-        Ainda nao ha artigos publicados.
-      </p>
+      <p style={{ color: "var(--muted)", lineHeight: 1.7 }}>Ainda nao ha artigos publicados.</p>
     );
   }
 
@@ -42,7 +40,10 @@ export function ArticleTimeline({ articles }: ArticleTimelineProps) {
             }}
           />
           <article style={{ display: "grid", gap: "8px" }}>
-            <time dateTime={article.publishedAt} style={{ color: "var(--muted)", fontSize: "14px" }}>
+            <time
+              dateTime={article.publishedAt}
+              style={{ color: "var(--muted)", fontSize: "14px" }}
+            >
               {formatDisplayDate(article.publishedAt)}
             </time>
             <h2 style={{ fontSize: "28px", margin: 0 }}>

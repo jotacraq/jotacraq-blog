@@ -86,7 +86,10 @@ export function ArticleContent({ article }: ArticleContentProps) {
 
     if (listItems.length > 0) {
       contentBlocks.push(
-        <ul key={`${article.slug}-list-${index}`} style={{ margin: "0 0 18px", paddingLeft: "20px" }}>
+        <ul
+          key={`${article.slug}-list-${index}`}
+          style={{ margin: "0 0 18px", paddingLeft: "20px" }}
+        >
           {listItems}
         </ul>
       );
@@ -112,7 +115,7 @@ export function ArticleContent({ article }: ArticleContentProps) {
           {article.subtitle}
         </p>
         <div style={{ color: "var(--muted)", fontSize: "14px" }}>
-          {formatDisplayDate(article.publishedAt)} · {article.readingTimeMinutes} min de leitura
+          {formatDisplayDate(article.publishedAt)} - {article.readingTimeMinutes} min de leitura
         </div>
       </header>
       <section style={{ fontSize: "18px" }}>{contentBlocks}</section>
