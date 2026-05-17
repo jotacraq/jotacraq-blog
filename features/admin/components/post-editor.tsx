@@ -28,6 +28,18 @@ const inputStyle: React.CSSProperties = {
   width: "100%",
 };
 
+const fieldLabelStyle: React.CSSProperties = {
+  display: "block",
+  fontWeight: 600,
+  marginBottom: "6px",
+};
+
+function ErrorMessage({ children }: { children?: string }) {
+  if (!children) return null;
+
+  return <p style={{ color: "#c0392b", margin: "6px 0 0" }}>{children}</p>;
+}
+
 export function PostEditor() {
   const [draft, setDraft] = useState<ArticleDraftInput>(initialDraft);
   const [copyState, setCopyState] = useState<"idle" | "success" | "error">("idle");
@@ -61,94 +73,103 @@ export function PostEditor() {
       style={{ display: "grid", gap: "24px", gridTemplateColumns: "1fr", marginTop: "24px" }}
     >
       <div style={{ display: "grid", gap: "14px" }}>
-        <label>
-          <div style={{ fontWeight: 600, marginBottom: "6px" }}>Titulo</div>
+        <div>
+          <label htmlFor="article-title" style={fieldLabelStyle}>
+            Titulo
+          </label>
           <input
+            id="article-title"
             onChange={(event) => updateField("title", event.target.value)}
             style={inputStyle}
             type="text"
             value={draft.title}
           />
-          {validation.errors.title ? (
-            <p style={{ color: "#c0392b", margin: "6px 0 0" }}>{validation.errors.title}</p>
-          ) : null}
-        </label>
+          <ErrorMessage>{validation.errors.title}</ErrorMessage>
+        </div>
 
-        <label>
-          <div style={{ fontWeight: 600, marginBottom: "6px" }}>Subtitulo</div>
+        <div>
+          <label htmlFor="article-subtitle" style={fieldLabelStyle}>
+            Subtitulo
+          </label>
           <input
+            id="article-subtitle"
             onChange={(event) => updateField("subtitle", event.target.value)}
             style={inputStyle}
             type="text"
             value={draft.subtitle}
           />
-          {validation.errors.subtitle ? (
-            <p style={{ color: "#c0392b", margin: "6px 0 0" }}>{validation.errors.subtitle}</p>
-          ) : null}
-        </label>
+          <ErrorMessage>{validation.errors.subtitle}</ErrorMessage>
+        </div>
 
-        <label>
-          <div style={{ fontWeight: 600, marginBottom: "6px" }}>Slug</div>
+        <div>
+          <label htmlFor="article-slug" style={fieldLabelStyle}>
+            Slug
+          </label>
           <input
+            id="article-slug"
             onChange={(event) => updateField("slug", event.target.value)}
             style={inputStyle}
             type="text"
             value={draft.slug}
           />
-          {validation.errors.slug ? (
-            <p style={{ color: "#c0392b", margin: "6px 0 0" }}>{validation.errors.slug}</p>
-          ) : null}
-        </label>
+          <ErrorMessage>{validation.errors.slug}</ErrorMessage>
+        </div>
 
-        <label>
-          <div style={{ fontWeight: 600, marginBottom: "6px" }}>Data de publicacao</div>
+        <div>
+          <label htmlFor="article-published-at" style={fieldLabelStyle}>
+            Data de publicacao
+          </label>
           <input
+            id="article-published-at"
             onChange={(event) => updateField("publishedAt", event.target.value)}
             placeholder="YYYY-MM-DD"
             style={inputStyle}
             type="text"
             value={draft.publishedAt}
           />
-          {validation.errors.publishedAt ? (
-            <p style={{ color: "#c0392b", margin: "6px 0 0" }}>{validation.errors.publishedAt}</p>
-          ) : null}
-        </label>
+          <ErrorMessage>{validation.errors.publishedAt}</ErrorMessage>
+        </div>
 
-        <label>
-          <div style={{ fontWeight: 600, marginBottom: "6px" }}>Resumo</div>
+        <div>
+          <label htmlFor="article-excerpt" style={fieldLabelStyle}>
+            Resumo
+          </label>
           <textarea
+            id="article-excerpt"
             onChange={(event) => updateField("excerpt", event.target.value)}
             rows={3}
             style={{ ...inputStyle, resize: "vertical" }}
             value={draft.excerpt}
           />
-          {validation.errors.excerpt ? (
-            <p style={{ color: "#c0392b", margin: "6px 0 0" }}>{validation.errors.excerpt}</p>
-          ) : null}
-        </label>
+          <ErrorMessage>{validation.errors.excerpt}</ErrorMessage>
+        </div>
 
-        <label>
-          <div style={{ fontWeight: 600, marginBottom: "6px" }}>Tags (separadas por virgula)</div>
+        <div>
+          <label htmlFor="article-tags" style={fieldLabelStyle}>
+            Tags (separadas por virgula)
+          </label>
           <input
+            id="article-tags"
             onChange={(event) => updateField("tags", event.target.value)}
             style={inputStyle}
             type="text"
             value={draft.tags}
           />
-        </label>
+        </div>
 
-        <label>
-          <div style={{ fontWeight: 600, marginBottom: "6px" }}>Conteudo</div>
+        <div>
+          <label htmlFor="article-content" style={fieldLabelStyle}>
+            Conteudo
+          </label>
           <textarea
+            id="article-content"
             onChange={(event) => updateField("content", event.target.value)}
             rows={14}
             style={{ ...inputStyle, resize: "vertical" }}
             value={draft.content}
           />
-          {validation.errors.content ? (
-            <p style={{ color: "#c0392b", margin: "6px 0 0" }}>{validation.errors.content}</p>
-          ) : null}
-        </label>
+          <ErrorMessage>{validation.errors.content}</ErrorMessage>
+        </div>
       </div>
 
       <div style={{ borderTop: "1px solid var(--border)", paddingTop: "20px" }}>
