@@ -141,4 +141,3 @@ Fluxo oficial:
 - Slug invalido e data invalida sao indicados ao usuario.
 - O nome de arquivo sugerido segue `YYYY-MM-DD-slug.mdx`.
 - O fluxo deixa claro que a publicacao acontece por commit.
-

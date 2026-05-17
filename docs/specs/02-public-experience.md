@@ -124,4 +124,3 @@ Autor sem GitHub configurado:
 - GitHub abre o perfil configurado.
 - Tema claro/escuro funciona e persiste.
 - A interface se adapta a mobile e desktop sem sobreposicao visual.
-

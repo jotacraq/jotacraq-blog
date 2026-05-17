@@ -104,11 +104,11 @@ Do not dispatch parallel implementation agents before Wave 0 is complete.
 
 These can run at the same time after Wave 0.
 
-| Worker | Task | Ownership | Depends On |
-| --- | --- | --- | --- |
-| Articles Domain | Task 5 | `features/articles/types.ts`, `features/articles/lib/articles.ts`, `features/articles/lib/articles.test.ts` | `content/articles`, `gray-matter` |
-| Author Domain | Task 6 | `features/author/types.ts`, `features/author/lib/author.ts`, `features/author/lib/author.test.ts` | `content/author.mdx`, `gray-matter` |
-| Admin Generator | Task 13 | `features/admin/types.ts`, `features/admin/lib/mdx-generator.ts`, `features/admin/lib/mdx-generator.test.ts` | quality tooling only |
+| Worker          | Task    | Ownership                                                                                                    | Depends On                          |
+| --------------- | ------- | ------------------------------------------------------------------------------------------------------------ | ----------------------------------- |
+| Articles Domain | Task 5  | `features/articles/types.ts`, `features/articles/lib/articles.ts`, `features/articles/lib/articles.test.ts`  | `content/articles`, `gray-matter`   |
+| Author Domain   | Task 6  | `features/author/types.ts`, `features/author/lib/author.ts`, `features/author/lib/author.test.ts`            | `content/author.mdx`, `gray-matter` |
+| Admin Generator | Task 13 | `features/admin/types.ts`, `features/admin/lib/mdx-generator.ts`, `features/admin/lib/mdx-generator.test.ts` | quality tooling only                |
 
 Coordinator integration after Wave 1:
 
@@ -136,10 +136,10 @@ Task 7 should finish before Tasks 8 and 9 because navbar uses shared UI and glob
 
 Ownership:
 
-| Worker | Task | Ownership |
-| --- | --- | --- |
-| UI Foundation | Task 7 | `app/globals.css`, `shared/ui/*` |
-| Theme | Task 8 | `app/layout.tsx`, `features/theme/components/*` |
+| Worker        | Task   | Ownership                                                                                                                             |
+| ------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------- |
+| UI Foundation | Task 7 | `app/globals.css`, `shared/ui/*`                                                                                                      |
+| Theme         | Task 8 | `app/layout.tsx`, `features/theme/components/*`                                                                                       |
 | Public Navbar | Task 9 | `features/articles/lib/format-date.ts`, `features/articles/lib/format-date.test.ts`, `features/articles/components/public-navbar.tsx` |
 
 Coordinator integration after Wave 2:
@@ -155,11 +155,11 @@ npm run build
 
 These can run at the same time after Wave 2 and Wave 1 domain libraries are integrated.
 
-| Worker | Task | Ownership | Depends On |
-| --- | --- | --- | --- |
-| Homepage | Task 10 | `app/page.tsx`, `features/articles/components/article-timeline.tsx` | Articles Domain, Public Navbar |
+| Worker         | Task    | Ownership                                                                         | Depends On                     |
+| -------------- | ------- | --------------------------------------------------------------------------------- | ------------------------------ |
+| Homepage       | Task 10 | `app/page.tsx`, `features/articles/components/article-timeline.tsx`               | Articles Domain, Public Navbar |
 | Article Detail | Task 11 | `app/artigos/[slug]/page.tsx`, `features/articles/components/article-content.tsx` | Articles Domain, Public Navbar |
-| About Page | Task 12 | `app/sobre/page.tsx` | Author Domain, Public Navbar |
+| About Page     | Task 12 | `app/sobre/page.tsx`                                                              | Author Domain, Public Navbar   |
 
 Coordinator integration after Wave 3:
 
@@ -188,11 +188,11 @@ Recommended sequence:
 
 Parallel-safe ownership:
 
-| Worker | Scope | Ownership |
-| --- | --- | --- |
-| Admin Shell | shared admin navigation | `features/admin/components/admin-navbar.tsx` |
-| Admin Dashboard | admin overview route | `app/admin/page.tsx` |
-| Admin Editor | post editor route and component | `features/admin/components/post-editor.tsx`, `app/admin/postar/page.tsx` |
+| Worker          | Scope                           | Ownership                                                                |
+| --------------- | ------------------------------- | ------------------------------------------------------------------------ |
+| Admin Shell     | shared admin navigation         | `features/admin/components/admin-navbar.tsx`                             |
+| Admin Dashboard | admin overview route            | `app/admin/page.tsx`                                                     |
+| Admin Editor    | post editor route and component | `features/admin/components/post-editor.tsx`, `app/admin/postar/page.tsx` |
 
 Dependencies:
 
@@ -218,10 +218,10 @@ Expected:
 
 These should run after feature integration.
 
-| Worker | Task | Ownership |
-| --- | --- | --- |
-| CI | Task 16 | `.github/workflows/quality.yml` |
-| Docs | Task 17 | `README.md` |
+| Worker         | Task    | Ownership                                              |
+| -------------- | ------- | ------------------------------------------------------ |
+| CI             | Task 16 | `.github/workflows/quality.yml`                        |
+| Docs           | Task 17 | `README.md`                                            |
 | QA Coordinator | Task 18 | verification only, fixes only after identifying issues |
 
 Task 16 and Task 17 can run in parallel. Task 18 must run last.
@@ -1942,7 +1942,9 @@ ${input.content.trim()}
 `;
 }
 
-export function getSuggestedFilename(input: Pick<ArticleDraftInput, "publishedAt" | "slug">): string {
+export function getSuggestedFilename(
+  input: Pick<ArticleDraftInput, "publishedAt" | "slug">
+): string {
   return `${input.publishedAt}-${input.slug}.mdx`;
 }
 ```
